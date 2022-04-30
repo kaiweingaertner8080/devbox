@@ -1,0 +1,6 @@
+---
+- name: Install IntelliJ IDEA
+  snap:
+    name: "{{ intellij_idea_package }}"
+    classic: true
+    state: present

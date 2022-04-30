@@ -1,0 +1,7 @@
+---
+- name: Install Helm CLI
+  become: yes
+  snap:
+    name: helm
+    classic: true
+    state: present

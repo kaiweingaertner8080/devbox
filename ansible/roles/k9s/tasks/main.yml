@@ -1,0 +1,9 @@
+---
+- name: Install K9s
+  snap:
+    name: k9s-nsg
+    state: present
+
+- name: Set K9s alias
+  become: yes
+  shell: "snap alias k9s-nsg k9s"

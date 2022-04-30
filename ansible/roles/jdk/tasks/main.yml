@@ -1,0 +1,6 @@
+---
+- name: Install Java JDK
+  become: yes
+  apt:
+    name: "{{ jdk_package }}"
+    state: present

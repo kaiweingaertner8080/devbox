@@ -1,0 +1,3 @@
+---
+jdk_version: "11"
+jdk_package: "openjdk-{{ jdk_version }}-jdk"

@@ -1,0 +1,42 @@
+---
+- name: Install required apt packages
+  become: true
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ca-certificates
+    - curl
+    - gnupg
+    - lsb-release
+
+- name: Add Apt Key
+  become: true
+  apt_key:
+    url: "https://download.docker.com/linux/debian/gpg"
+    keyring: /usr/share/keyrings/docker-archive-keyring.gpg
+    state: present
+
+- name: Add Apt Repository
+  become: true
+  apt_repository:
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+    state: present
+
+- name: Install Docker
+  become: true
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-compose-plugin
+
+- name: Add current user to docker group
+  become: true
+  user:
+    name: "{{ ansible_env.USER }}"
+    groups: "docker"
+    append: yes

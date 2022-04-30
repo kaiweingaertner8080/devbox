@@ -1,0 +1,15 @@
+set shiftwidth=4
+set tabstop=4 " number of visual spaces per TAB
+set softtabstop=4 " number of spaces in tab when editing
+set expandtab " tabs are spaces
+set smarttab
+
+set autoindent
+set smartindent
+
+colorscheme evening
+
+syntax on
+
+set ignorecase " ignore case by default
+set smartcase " honor case if given in search

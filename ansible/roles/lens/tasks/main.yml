@@ -1,0 +1,7 @@
+---
+- name: Install Lens
+  become: yes
+  snap:
+    name: kontena-lens
+    classic: true
+    state: present

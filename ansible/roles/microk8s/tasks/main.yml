@@ -1,0 +1,26 @@
+---
+- name: Create .kube dir
+  file:
+    path: "{{ ansible_user_dir }}/.kube"
+
+- name: Install MicroK8s
+  become: yes
+  snap:
+    name: microk8s
+    classic: true
+    state: present
+
+- name: Add current user to MicroK8s group
+  become: true
+  user:
+    name: "{{ ansible_env.USER }}"
+    groups: "microk8s"
+    append: yes
+
+- name: Write Kube Config
+  shell: "microk8s config > {{ ansible_user_dir }}/.kube/config"
+  args:
+    creates: "{{ ansible_user_dir }}/.kube/config"
+
+- name: Enable Plugins
+  shell: "microk8s enable dns traeffik registry helm3"
