@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 sudo apt update
-sudo apt install -y python3-pip
-
-pip install --user ansible
-
-source "$HOME/.profile"
+sudo apt install software-properties-common
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo apt install -y ansible
