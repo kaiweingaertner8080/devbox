@@ -1,0 +1,27 @@
+---
+- name: Install Requirements
+  become: true
+  apt:
+    name:
+      - curl
+      - gnupg
+      - software-properties-common
+
+- name: Add Hashicorp Apt Key
+  become: true
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+    keyring: /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    state: present
+
+- name: Add Hashicorp Apt Repository
+  become: true
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+    state: present
+
+- name: Install Terraform
+  become: true
+  apt:
+    name: terraform
+    state: present
