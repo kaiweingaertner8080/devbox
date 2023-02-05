@@ -17,6 +17,7 @@
     value: "{{ item.value }}"
     scope: global
   with_items:
+    - { name: 'init.defaultBranch', value: "{{ git_default_branch }}"}
     - { name: 'user.name', value: "{{ git_user }}" }
     - { name: 'user.email', value: "{{ git_email }}"}
     - { name: 'credential.helper', value: "cache --timeout=36000"}

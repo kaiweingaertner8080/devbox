@@ -13,6 +13,7 @@
       - tree
       - vim
       - tmux
+      - jq
     state: present
 
 - name: Setup vimrc
